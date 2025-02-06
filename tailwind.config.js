@@ -1,11 +1,10 @@
-import type { Config } from 'tailwindcss';
-
+/** @type {import('tailwindcss').Config} */
 export default {
-  content: ['src/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}', 'index.html'],
+  content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
       colors: {
-        border: 'var(--border))',
+        border: 'var(--border)',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'var(--background)',
@@ -39,11 +38,11 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
         chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
         },
         component: 'var(--component)',
       },
@@ -54,4 +53,5 @@ export default {
       },
     },
   },
-} satisfies Config;
+  plugins: [require('tailwindcss-animate')],
+};
