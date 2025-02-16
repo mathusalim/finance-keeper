@@ -1,6 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/Button/Button.svelte';
   import Input from '$lib/components/Input/Input.svelte';
+  import { useApplicationState } from '../../state/applicationState.svelte';
   import { useAuth } from '../../supabase/auth/auth.svelte';
 
   const passwordValidation = (val: string) => {
@@ -23,11 +24,14 @@
   let error = $state('');
 
   const { updatePassword } = useAuth();
+  const { setIsPasswordReset } = useApplicationState();
 
   const tryUpdate = async (password: string) => {
     const result = await updatePassword(password);
     if (result.error) {
       error = result.error.message;
+    } else {
+      setIsPasswordReset(false);
     }
   };
 </script>
@@ -46,11 +50,16 @@
   </div>
   {#if error}<p class="text-error-500">{error}</p>{/if}
   <Button
+    variant="transparent"
+    color="success"
+    class="w-full"
+    onclick={() => setIsPasswordReset(false)}>Back to Home</Button
+  >
+  <Button
     variant="soft"
     color="success"
     class="w-full"
     disabled={validationState.password}
-    onclick={() => tryUpdate(password)}>Update</Button
+    onclick={() => tryUpdate(password)}>Update Password</Button
   >
-  <!-- <Button variant="outline" class="w-full">Login with Google</Button> -->
 </div>

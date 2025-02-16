@@ -6,6 +6,10 @@ export const useAuth = () => {
     await client().auth.signOut();
   };
 
+  const signUp = async (email: string, password: string) => {
+    return await client().auth.signUp({ email, password });
+  };
+
   const login = async (email: string, password: string) => {
     return await client().auth.signInWithPassword({ email, password });
   };
@@ -16,8 +20,7 @@ export const useAuth = () => {
 
   const requestPasswordReset = async (email: string) => {
     const result = await client().auth.resetPasswordForEmail(email);
-    console.log('requestPasswordReset', result);
     return result;
   };
-  return { logout, login, requestPasswordReset, updatePassword };
+  return { logout, login, requestPasswordReset, updatePassword, signUp };
 };

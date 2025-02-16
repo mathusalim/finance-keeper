@@ -2,16 +2,14 @@
   import Button from '$lib/components/Button/Button.svelte';
   import Card from '$lib/components/Card/Card.svelte';
   import Separator from '$lib/components/Separator/Separator.svelte';
-  import Confirm from './Confirm.svelte';
+  import { useApplicationState } from '../../state/applicationState.svelte';
+  import ForgotPassword from './ForgotPassword.svelte';
   import Login from './Login.svelte';
   import Message from './Message.svelte';
   import Register from './Register.svelte';
-  import { useAuthState } from './Auth.svelte';
-  import { useAuthEvents } from '../../supabase/auth/authEvents.svelte';
-  const { pageState, setPageName } = useAuthState();
-  const { recovery } = useAuthEvents();
-  const recoveryState = $derived(recovery());
-  const pageName = $derived(pageState());
+  import UpdatePassword from './UpdatePassword.svelte';
+  const { state, setAuthPageName } = useApplicationState();
+  const pageName = $derived(state.authPageName);
 </script>
 
 <div class="flex items-center justify-center min-h-screen">
@@ -24,18 +22,19 @@
     {/snippet}
 
     {#snippet cardBody()}
-      {#if recoveryState}
-        <Confirm />
+      {#if pageName === 'forgotPassword'}
+        <ForgotPassword />
       {:else if pageName === 'Login'}
         <Login />
       {:else if pageName === 'Register'}
         <Register />
       {:else if pageName === 'message'}
         <Message />
-      {:else if recoveryState}{:else}
-        <Confirm />
+      {:else if pageName === 'updatePassword'}
+        <UpdatePassword />
       {/if}
     {/snippet}
+
     {#snippet cardFooter()}
       {#if pageName === 'Login' || pageName === 'Register'}
         <Separator color="secondary" class="my-4" />
@@ -47,7 +46,7 @@
             variant="transparent"
             class="underline"
             onclick={() =>
-              setPageName(pageName === 'Login' ? 'Register' : 'Login')}
+              setAuthPageName(pageName === 'Login' ? 'Register' : 'Login')}
           >
             {pageName === 'Login' ? 'Register' : 'Login'}
           </Button>

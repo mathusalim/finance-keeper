@@ -1,6 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/Button/Button.svelte';
   import Input from '$lib/components/Input/Input.svelte';
+  import { useApplicationState } from '../../state/applicationState.svelte';
   import { useAuth } from '../../supabase/auth/auth.svelte';
 
   const emailValidation = (val: string) => {
@@ -38,7 +39,8 @@
   let password = $state('');
   let error = $state('');
 
-  const { login, requestPasswordReset } = useAuth();
+  const { login } = useAuth();
+  const { setAuthPageName } = useApplicationState();
 
   const tryLogin = async (email: string, password: string) => {
     const result = await login(email, password);
@@ -66,7 +68,7 @@
         class="ml-auto inline-block text-sm underline"
         variant="transparent"
         color="warning"
-        onclick={() => requestPasswordReset(email)}
+        onclick={() => setAuthPageName('forgotPassword')}
       >
         Forgot your password?
       </Button>
