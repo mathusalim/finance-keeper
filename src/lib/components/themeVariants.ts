@@ -180,37 +180,37 @@ export const ThemeVariants = (base: string) =>
       {
         color: 'primary',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-primary-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-primary-500 to bg-tertiary-500',
       },
       {
         color: 'secondary',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-secondary-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-secondary-500 to bg-tertiary-500',
       },
       {
         color: 'tertiary',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-tertiary-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-primary-500 to bg-tertiary-500',
       },
       {
         color: 'surface',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-surface-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-surface-500 to bg-tertiary-500',
       },
       {
         color: 'success',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-success-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-success-500 to bg-tertiary-500',
       },
       {
         color: 'warning',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-warning-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-warning-500 to bg-tertiary-500',
       },
       {
         color: 'error',
         variant: 'gradient',
-        class: 'bg-gradient-to-br from-error-500 to bg-surface-500',
+        class: 'bg-gradient-to-br from-error-500 to bg-tertiary-500',
       },
       //#endregion
       //#

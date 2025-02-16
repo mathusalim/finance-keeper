@@ -10,6 +10,7 @@
 
   const {
     children,
+    disabled = false,
     variant = 'filled',
     color = 'primary',
     ...rest
@@ -18,15 +19,13 @@
     color?: ButtonColor;
   } = $props();
 
-  const newClasses: string = ButtonVariants({ variant, color });
+  const newClasses: string = ButtonVariants({
+    variant,
+    color,
+    disabled: disabled || false,
+  });
 </script>
 
-<Button.Root
-  {...rest}
-  onclick={() => {
-    console.log('click');
-  }}
-  class={clsx(newClasses, rest.class)}
->
+<Button.Root {...rest} class={clsx(newClasses, rest.class)}>
   {@render children?.()}
 </Button.Root>

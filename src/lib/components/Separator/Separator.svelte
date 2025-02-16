@@ -13,7 +13,7 @@
   } = $props();
 
   const newClasses =
-    orientation === 'horizontal' ? 'h-[2px] w-full' : 'min-h-full w-[2px]';
+    orientation === 'horizontal' ? 'h-[2px] w-full my-1' : 'min-h-full w-[2px]';
 </script>
 
 <Separator.Root
