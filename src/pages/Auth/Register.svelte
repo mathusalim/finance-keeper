@@ -49,8 +49,9 @@
     } else {
       if ((result.data.user?.identities?.length || 0) > 0) {
         setAuthPageName('message');
+      } else {
+        error = 'Account with this email already exists';
       }
-      console.log(result);
     }
   };
 </script>
